@@ -1,4 +1,9 @@
 # Superstore Data Analysis Using PostgreSQL and Neo4j
+## Team 8 Members
+Junjie Sun - jus025@ucsd.edu
+Wendi Tan - w1tan@ucsd.edu
+Sirui Cao - sic038@ucsd.edu
+
 ## Overview
 
 This project analyzes the Superstore dataset using both SQL (relational database) and Neo4j (graph database) to extract business insights on sales, customer behavior, product returns, and regional trends. Additionally, the analysis is visualized using Tableau and Matplotlib to better understand key metrics like shipping times, profit margins, and return rates.
