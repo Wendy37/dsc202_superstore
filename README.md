@@ -22,3 +22,7 @@ The Superstore dataset consists of the following key tables:
 - Returns: Tracks returned orders and their statuses.
 
 - People: Lists regional managers for different regions.
+
+## Presentation
+
+The presentation recording is in 'Presentation' folder. And here is the slide https://docs.google.com/presentation/d/1lcVcrGlUor4GmLndRokM8eRTloybTlZE0C2mEVl4fVI/edit?usp=sharing.

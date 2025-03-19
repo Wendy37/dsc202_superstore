@@ -1,34 +1,25 @@
-# Re-import necessary libraries since the execution state was reset
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
-# Simulated dataset similar to Neo4j query results
-data = {
-    "Product": ["Laptop", "Chair", "Printer", "Desk", "Monitor", "Pen", "Notebook"],
-    "CustomerPairs": [15, 30, 10, 25, 18, 5, 12]  # Number of unique customer pairs who ordered the same product
-}
+# Read the CSV file containing product and unique customer pair counts
+df = pd.read_csv('data_analysis/num_unique_customer_pair_per_product.csv')
 
-# Create DataFrame
-df = pd.DataFrame(data)
-
-# Set visualization style
-plt.figure(figsize=(10, 6))
-sns.set_theme(style="whitegrid")
+# Sort the DataFrame in descending order by the number of customer pairs and select the top 5 products
+top5 = df.sort_values(by='num_customer_pair', ascending=False).head(5)
 
 # Create a bar chart
-ax = sns.barplot(x="Product", y="CustomerPairs", data=df, palette="mako")
+plt.figure(figsize=(10, 6))
+bars = plt.bar(top5['Product'], top5['num_customer_pair'], color='skyblue')
 
-# Annotate each bar with the corresponding value
-for container in ax.containers:
-    ax.bar_label(container, fmt="%d", fontsize=12, color="black", label_type="edge")
+# Add value labels on each bar
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width() / 2, height, f'{int(height)}', 
+             ha='center', va='bottom', fontsize=10)
 
-# Chart Formatting
-plt.title("Number of Unique Customer Pairs Who Ordered the Same Product", fontsize=14)
-plt.ylabel("Number of Customer Pairs", fontsize=12)
-plt.xlabel("Product", fontsize=12)
-plt.xticks(rotation=45)
-plt.grid(axis="y", linestyle="--", alpha=0.7)
-
-# Show Chart
+plt.xlabel('Product')
+plt.ylabel('Number of Unique Customer Pairs')
+plt.title('Top 5 Products with Most Unique Customer Pairs')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
 plt.show()
