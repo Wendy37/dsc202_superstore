@@ -4,11 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Neo4j Database Connection (Update with actual credentials)
-NEO4J_URI = "bolt://localhost:7691"  # Update with your Neo4j instance URI
-USERNAME = "neo4j"  # Your Neo4j username
-PASSWORD = "12345678"  # Your Neo4j password
+NEO4J_URI = "bolt://localhost:7691" 
+USERNAME = "neo4j"
+PASSWORD = "12345678"
 
-# Define Neo4j Query to get most returned products in each region
 QUERY = """
 MATCH (o:Order)-[:CONTAINS]->(p:Product), (o)-[:SHIPPED_TO]->(r:Region)
 OPTIONAL MATCH (o)-[:RETURNED]->(ret:Return)

@@ -31,3 +31,20 @@ The Superstore dataset consists of the following key tables:
 ## Presentation
 
 The presentation recording is in 'Presentation' folder. And here is the slide https://docs.google.com/presentation/d/1lcVcrGlUor4GmLndRokM8eRTloybTlZE0C2mEVl4fVI/edit?usp=sharing.
+
+
+## How to Run
+
+To activate the virtual environment, run the following command:
+```
+source venv/bin/activate
+```
+
+After activating the virtual environment, install the required packages:
+```
+pip install -r requirements.txt
+```
+
+
+PostgreSQL: 
+Neo4j: ```python3 ./graph_db.py``` then ```python3 ./graph_analysis.py```

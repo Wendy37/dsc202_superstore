@@ -2,6 +2,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
+neo4j_query = """
+    MATCH (o:Order)-[:CONTAINS]->(p:Product), (o)-[:SHIPPED_TO]->(r:Region)
+    RETURN r.RegionName, p.ProductName, COUNT(o) AS OrderCount
+    ORDER BY r.RegionName, OrderCount DESC;
+"""
+
 file_path = "./data_analysis/region_order_count.csv"
 df = pd.read_csv(file_path)
 df.columns = ["Region", "ProductName", "OrderCount"]
@@ -21,5 +28,4 @@ plt.legend(title="Product Name", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.xticks(rotation=45)
 plt.grid(axis="y", linestyle="--", alpha=0.7)
 
-# Show Chart
 plt.show()
