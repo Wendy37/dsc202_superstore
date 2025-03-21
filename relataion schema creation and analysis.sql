@@ -61,6 +61,7 @@ ALTER COLUMN order_date TYPE DATE USING TO_DATE(order_date, 'MM/DD/YYYY'),
 ALTER COLUMN ship_date TYPE DATE USING TO_DATE(ship_date, 'MM/DD/YYYY');
 
 
+--return rate by product and region
 SELECT o.region, p.category, COUNT(distinct r.order_id ) * 100.0 / COUNT(distinct od.order_id) AS return_rate
 FROM public.OrderDetail od
 JOIN public.Order o ON od.order_id = o.order_id
@@ -70,7 +71,7 @@ GROUP BY o.region, p.category
 ORDER BY o.region, return_rate DESC;
 
 
-
+--first 5 customers who order the most each region
 select region, customer_name, total_orders
 from(
 SELECT o.region, c.customer_name, COUNT(distinct o.order_id) AS total_orders, row_number() over (partition by region order by COUNT(distinct o.order_id) desc) as rk
@@ -82,6 +83,7 @@ where rk<=5
 ;
 
 
+--first 3 popular products each region
 WITH ProductSales AS (
     SELECT o.region, p.product_name, COUNT(distinct od.order_id) AS order_count, row_number() over (partition by region order by COUNT(distinct od.order_id) desc) as rk
     FROM public.OrderDetail od
@@ -94,6 +96,3 @@ FROM ProductSales
 WHERE rk<=3
 ORDER BY region;
 
-select * from public.product
-;
-select * from public.orderdetail;
