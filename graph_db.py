@@ -10,9 +10,9 @@ NEO4J_PASSWORD = "12345678"    # Using the password you set for the DBMS
 driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
 # Load CSV data into Pandas
-orders_df = pd.read_csv("Orders.csv")
-people_df = pd.read_csv("People.csv")
-returns_df = pd.read_csv("Returns.csv")
+orders_df = pd.read_csv("./dataset/Orders.csv")
+people_df = pd.read_csv("./dataset/People.csv")
+returns_df = pd.read_csv("./dataset/Returns.csv")
 
 # Cypher Queries to create constraints for unique nodes
 CONSTRAINT_QUERIES = [

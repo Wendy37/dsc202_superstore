@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from xplotter.insights import *
+from xplotter.formatter import format_spines
 
 orders_path = "./dataset/Orders.csv"
 returns_path = "./dataset/Returns.csv"
@@ -18,29 +20,26 @@ print(returns_df.isnull().sum())
 print(people_df.isnull().sum())
 
 
-product_names = [
-    "Easy-staple paper",
-    "Staple envelope",
-    "Staples",
-    "Staple envelope",
-    "Easy-staple paper",
-    "Staples",
-    "Easy-staple paper",
-    "Staples",
-    "Staple envelope",
-    "Staples",
-    "Staple envelope",
-    "Imation 16GB Mini TravelDrive USB 2.0 Flash Drive"
-]
-unique_product_names = list(set(product_names))
-df = pd.read_csv("Orders_Formatted.csv")
-filtered_df = df[df["Product Name"].isin(unique_product_names)]
-result = filtered_df[["Product Name", "Category", "Sub-Category"]].drop_duplicates()
+fig = plt.figure(constrained_layout=True, figsize=(13, 10))
+gs = GridSpec(2, 2, figure=fig)
+ax1 = fig.add_subplot(gs[0, :])
 
-print(result)
+# Lineplot - Total Orders of Superstore Over Time 
+sns.lineplot(data=orders_df['Order Date'].value_counts().sort_index(), ax=ax1, 
+             color='darkslateblue', linewidth=2)
+
+format_spines(ax1, right_border=False)
+  
+for tick in ax1.get_xticklabels():
+    tick.set_rotation(45)
+ax1.set_title('Total Orders of Superstore Over Time ', size=14, color='dimgrey')
+
+
 if 'Ship Date' in orders_df.columns:
     orders_df['Ship Date'] = pd.to_datetime(orders_df['Ship Date'], errors='coerce')
-    
+
+# pd.to_csv("Orders_Formatted.csv", index=False)
+
 
 # Order Count by Region (Pie Chart)
 if 'Region' in orders_df.columns:

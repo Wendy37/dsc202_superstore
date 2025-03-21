@@ -32,6 +32,8 @@ The Superstore dataset consists of the following key tables:
 
 The presentation recording is in 'Presentation' folder. And here is the slide https://docs.google.com/presentation/d/1lcVcrGlUor4GmLndRokM8eRTloybTlZE0C2mEVl4fVI/edit?usp=sharing.
 
+## Report
+Report pdf file is located in Report folder.
 
 ## How to Run
 
@@ -47,4 +49,11 @@ pip install -r requirements.txt
 
 
 PostgreSQL: 
-Neo4j: ```python3 ./graph_db.py``` then ```python3 ./graph_analysis.py```
+Neo4j: 
+```
+python3 ./graph_db.py
+``` 
+then 
+```
+python3 ./graph_analysis.py
+```
